@@ -1,4 +1,6 @@
 # Django settings for reviews project.
+import os
+SETTINGS_FILE_FOLDER = os.path.dirname(os.path.realpath(__file__))
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -11,10 +13,10 @@ MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': '',                      # Or path to database file if using sqlite3.
-        'USER': '',                      # Not used with sqlite3.
-        'PASSWORD': '',                  # Not used with sqlite3.
+        'ENGINE': 'django.db.backends.mysql', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': 'reviews',                      # Or path to database file if using sqlite3.
+        'USER': 'root',                      # Not used with sqlite3.
+        'PASSWORD': 'root',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
         'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
     }
@@ -107,6 +109,7 @@ ROOT_URLCONF = 'urls'
 WSGI_APPLICATION = 'wsgi.application'
 
 TEMPLATE_DIRS = (
+    os.path.join(SETTINGS_FILE_FOLDER,'templates'),
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
@@ -119,9 +122,9 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
     # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
 )
