@@ -160,3 +160,5 @@ LOGGING = {
 
 
 AUTH_USER_MODEL = 'core.User'
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/login/'

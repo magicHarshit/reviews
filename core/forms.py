@@ -33,28 +33,3 @@ class RegistrationForm(forms.ModelForm):
         if len(password1) < 5:
             raise forms.ValidationError("Enter a password of min 10 charcters")
         return password1
-
-
-
-class LoginAuthenticationForm(AuthenticationForm):
-
-    """
-    Base class for authenticating users. Extend this to get a form that accepts
-    username/password logins.
-    """
-    username = forms.CharField( max_length = 30, widget=forms.TextInput(attrs={'placeholder': 'username','class':'span12'}) )
-    password = forms.CharField( widget = forms.PasswordInput(attrs ={'placeholder':'Password','class':'span12'}) )
-
-
-    def __init__( self, request = None, *args, **kwargs ):
-        """
-        If request is passed in, the form will validate that cookies are
-        enabled. Note that the request (a HttpRequest object) must have set a
-        cookie with the key TEST_COOKIE_NAME and value TEST_COOKIE_VALUE before
-        running this validation.
-        """
-        self.request = request
-        self.user_cache = None
-        super( AuthenticationForm, self).__init__( *args, **kwargs)
-
-
