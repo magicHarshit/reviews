@@ -11,8 +11,32 @@ class User(AbstractUser):
     """
     status = models.CharField(max_length=100, choices=STATUS_CHOICES, default='Pending')
     organisation = models.CharField(max_length=100)
+    connections = models.ManyToManyField("self", through='UserConnection', symmetrical=False)
 
     def __unicode__(self):
         return self.username
 
 
+class UserGroup(models.Model):
+    """
+    a user can make a group with some name and description.
+    """
+    name = models.CharField(max_length=50)
+    description = models.TextField()
+    owner = models.ForeignKey(User)
+
+    def __unicode__(self):
+        return self.name
+
+
+class UserConnection(models.Model):
+    """
+    through table of User, field_name:-connections
+    users can add other users in there network
+    """
+    source = models.ForeignKey(User, related_name='source')
+    target = models.ForeignKey(User, related_name='target')
+    group = models.ForeignKey(UserGroup)
+
+    def __unicode__(self):
+        return self.source
